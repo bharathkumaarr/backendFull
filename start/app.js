@@ -14,9 +14,15 @@
 
 // server.listen(3000)
 
+const userModel = require('./models/user');
+const dbConnection = require('./config/db');
+
+
+
+
 const express = require('express');
 
-const morgan = require('morgan')
+const morgan = require('morgan');
 const app = express();
 
 app.use(morgan('dev'))
