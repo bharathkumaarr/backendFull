@@ -75,6 +75,7 @@ app.get('/profile', (req,res)=> {
 app.get('/register', (req,res)=> {
     res.render('register')
 })
+
 app.post('/register', async (req,res)=> {
 
     const {username, email, password} = req.body //object destrcucturing
@@ -86,12 +87,21 @@ app.post('/register', async (req,res)=> {
     })
 
     res.send('user registered')
+})
 
-    app.get('/get-users', (req,res)=> {
-        userModel.find({username:'a'}).then((users)=> {
-            res.send(users)
-        })
+app.get('/get-users', (req,res)=> {
+    userModel.find({username:'a'}).then((users)=> {
+        res.send(users)
     })
+})
+
+app.get('/update-user',async (req,res)=> {
+    await userModel.findOneAndUpdate({
+        username: 'a'
+     },{
+        email: 'c@cnew.com'
+     })
+     res.send('user updated')
 })
 
 
