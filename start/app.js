@@ -18,9 +18,8 @@ const userModel = require('./models/user');
 const dbConnection = require('./config/db');
 
 
-
-
 const express = require('express');
+
 
 const morgan = require('morgan');
 const app = express();
@@ -71,6 +70,22 @@ app.get('/about', (req,res)=> {
 
 app.get('/profile', (req,res)=> {
     res.send('this is the profile page')
+})
+
+app.get('/register', (req,res)=> {
+    res.render('register')
+})
+app.post('/register', async (req,res)=> {
+
+    const {username, email, password} = req.body //object destrcucturing
+    
+    await userModel.create({
+        username: username,
+        email: email,
+        password: password
+    })
+
+    res.send('user registered')
 })
 
 
